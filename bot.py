@@ -11,13 +11,11 @@ from telegram.ext import (
     ContextTypes,
 )
 
-# Настройка логирования
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO,
 )
 
-# Название команды
 TEAM_NAME = 'Леди и жиробасы'
 
 
@@ -32,12 +30,15 @@ QUESTIONS_DB = load_questions()
 
 # games[chat_id] = {
 #     "status": "active" | "idle",
+#     "initiator_id": int,
+#     "initiator_name": str,
 #     "category": "...",
 #     "questions": [...],
 #     "current_idx": 0,
 #     "score": 0,
 #     "state": "waiting_answer" | "showing_answer",
-#     "timer_task": None
+#     "timer_task": None,
+#     "last_msg_id": None
 # }
 games = {}
 
@@ -50,8 +51,8 @@ def get_categories():
 async def start_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
   msg = (
       f'👋 Привет, команда **«{TEAM_NAME}»**!\n\n'
-      'Я тренировочный бот для игр **Please Quiz** с большой базой из 50+'
-      ' вопросов.\n\n'
+      'Я тренировочный бот для игр **Please Quiz** с большой базой из 100+'
+      ' вопросов (включая картинки, кино, игры и искусство).\n\n'
       '📌 **Команды:**\n'
       '• `/quiz` — начать новую тренировку\n'
       '• `/stop` — остановить игру\n'
@@ -64,7 +65,7 @@ async def quiz_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
   categories = get_categories()
   keyboard = [[
       InlineKeyboardButton(
-          '🎲 Все категории (Микс 50 вопросов)', callback_data='cat_ALL'
+          '🎲 Все категории (Микс 100 вопросов)', callback_data='cat_ALL'
       )
   ]]
 
@@ -89,9 +90,9 @@ async def category_callback(
     update: Update, context: ContextTypes.DEFAULT_TYPE
 ):
   query = update.callback_query
-  await query.answer()
-
+  user = query.from_user
   chat_id = query.message.chat_id
+
   cat_data = query.data.replace('cat_', '')
 
   if cat_data == 'ALL':
@@ -104,13 +105,15 @@ async def category_callback(
     cat_name = cat_data
 
   if not selected_questions:
-    await query.edit_message_text('❌ В этой категории пока нет вопросов!')
+    await query.answer('❌ В этой категории пока нет вопросов!', show_alert=True)
     return
 
   random.shuffle(selected_questions)
 
   games[chat_id] = {
       'status': 'active',
+      'initiator_id': user.id,
+      'initiator_name': user.full_name or user.username or 'Игрок',
       'category': cat_name,
       'questions': selected_questions,
       'current_idx': 0,
@@ -119,7 +122,9 @@ async def category_callback(
       'timer_task': None,
   }
 
+  await query.answer('Игра запущена!')
   await query.edit_message_text(
+      f'🎮 Игру запустил(а): **{user.full_name}**\n'
       f'✅ **Тематика:** {cat_name}\n'
       f'📊 Вопросов в пакете: **{len(selected_questions)}**\n\n'
       '🚀 Начинаем через 2 секунды...',
@@ -138,12 +143,14 @@ async def send_question(chat_id: int, context: ContextTypes.DEFAULT_TYPE):
   total = len(game['questions'])
 
   if idx >= total:
+    initiator = game.get('initiator_name', 'Игрок')
     await context.bot.send_message(
         chat_id=chat_id,
         text=(
-            '🏁 **Тренировка окончена!**\n\n'
-            f'🏆 Команда **«{TEAM_NAME}»** набрала: **{game["score"]} из'
-            f' {total}** правильных ответов!\nЗапустить новую: `/quiz`.'
+            '🏁 **Тренировка окончена!** (Игру начинал(а):'
+            f' {initiator})\n\n🏆 Команда **«{TEAM_NAME}»** набрала:'
+            f' **{game["score"]} из {total}** правильных ответов!\nЗапустить'
+            ' новую: `/quiz`.'
         ),
         parse_mode='Markdown',
     )
@@ -153,7 +160,6 @@ async def send_question(chat_id: int, context: ContextTypes.DEFAULT_TYPE):
   q = game['questions'][idx]
   game['state'] = 'waiting_answer'
 
-  # Формируем клавиатуру в зависимости от типа вопроса (открытый / закрытый с вариантами)
   keyboard = []
   if q.get('type') == 'closed' and 'options' in q:
     opt_row = []
@@ -177,14 +183,15 @@ async def send_question(chat_id: int, context: ContextTypes.DEFAULT_TYPE):
   q_type_badge = (
       '🔘 Закрытый вопрос'
       if q.get('type') == 'closed'
-      else '💬 Открытый вопрос (обсуждение)'
+      else '💬 Открытый вопрос'
   )
-
   options_text = ''
   if q.get('options'):
     options_text = '\n\n' + '\n'.join(q['options'])
 
+  initiator = game.get('initiator_name', 'Игрок')
   msg_text = (
+      f'🎮 Игру ведёт: **{initiator}**\n'
       f'❓ **Вопрос №{idx + 1} / {total}** [{q.get("category", "Разнобой")}]\n'
       f'_{q_type_badge}_\n\n'
       f'**{q["question"]}**'
@@ -192,12 +199,33 @@ async def send_question(chat_id: int, context: ContextTypes.DEFAULT_TYPE):
       f'⏱ Время: **{q.get("time_limit", 45)} сек**'
   )
 
-  await context.bot.send_message(
-      chat_id=chat_id,
-      text=msg_text,
-      reply_markup=reply_markup,
-      parse_mode='Markdown',
-  )
+  image_url = q.get('image_url')
+  if image_url:
+    try:
+      sent_msg = await context.bot.send_photo(
+          chat_id=chat_id,
+          photo=image_url,
+          caption=msg_text,
+          reply_markup=reply_markup,
+          parse_mode='Markdown',
+      )
+      game['last_msg_id'] = sent_msg.message_id
+    except Exception as e:
+      sent_msg = await context.bot.send_message(
+          chat_id=chat_id,
+          text=f'🖼 *(Не удалось загрузить картинку)*\n\n{msg_text}',
+          reply_markup=reply_markup,
+          parse_mode='Markdown',
+      )
+      game['last_msg_id'] = sent_msg.message_id
+  else:
+    sent_msg = await context.bot.send_message(
+        chat_id=chat_id,
+        text=msg_text,
+        reply_markup=reply_markup,
+        parse_mode='Markdown',
+    )
+    game['last_msg_id'] = sent_msg.message_id
 
   if game.get('timer_task'):
     game['timer_task'].cancel()
@@ -270,11 +298,23 @@ async def reveal_answer(chat_id: int, context: ContextTypes.DEFAULT_TYPE):
 
 async def action_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
   query = update.callback_query
-  await query.answer()
-
+  user = query.from_user
   chat_id = query.message.chat_id
   game = games.get(chat_id)
+
   if not game or game['status'] != 'active':
+    await query.answer('Активная игра не найдена.', show_alert=True)
+    return
+
+  # Проверяем, что на кнопки нажимает именно тот, кто запустил игру
+  initiator_id = game.get('initiator_id')
+  if initiator_id and user.id != initiator_id:
+    initiator_name = game.get('initiator_name', 'другой участник')
+    await query.answer(
+        f'⛔️ Управлять игрой может только тот, кто её запустил'
+        f' ({initiator_name})!',
+        show_alert=True,
+    )
     return
 
   data = query.data
@@ -286,14 +326,36 @@ async def action_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if chosen_letter in correct_ans:
       game['score'] += 1
-      await query.edit_message_text(
-          f'🎯 **Верно!** Вариант {chosen_letter} правильный.\nТекущий счёт:'
-          f' **{game["score"]}**'
-      )
+      await query.answer('Верно!')
+      if query.message.caption:
+        await query.edit_message_caption(
+            caption=(
+                query.message.caption
+                + f'\n\n🎯 **Ваш выбор ({chosen_letter}): ВЕРНО!** Счёт:'
+                f' {game["score"]}'
+            ),
+            parse_mode='Markdown',
+        )
+      else:
+        await query.edit_message_text(
+            f'🎯 **Верно!** Вариант {chosen_letter} правильный.\nТекущий счёт:'
+            f' **{game["score"]}**'
+        )
     else:
-      await query.edit_message_text(
-          f'❌ **Неверно!** Правильный ответ: **{correct_ans}**'
-      )
+      await query.answer('Неверно!')
+      if query.message.caption:
+        await query.edit_message_caption(
+            caption=(
+                query.message.caption
+                + f'\n\n❌ **Ваш выбор ({chosen_letter}): НЕВЕРНО!** Ответ:'
+                f' {correct_ans}'
+            ),
+            parse_mode='Markdown',
+        )
+      else:
+        await query.edit_message_text(
+            f'❌ **Неверно!** Правильный ответ: **{correct_ans}**'
+        )
 
     if game.get('timer_task'):
       game['timer_task'].cancel()
@@ -305,6 +367,7 @@ async def action_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
   elif data == 'action_hint':
     q = game['questions'][game['current_idx']]
     hint = q.get('hint', 'Подсказка отсутствует.')
+    await query.answer('Подсказка отправлена в чат!')
     await context.bot.send_message(
         chat_id=chat_id, text=f'💡 **Подсказка:** _{hint}_', parse_mode='Markdown'
     )
@@ -312,10 +375,12 @@ async def action_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
   elif data == 'action_reveal':
     if game.get('timer_task'):
       game['timer_task'].cancel()
+    await query.answer('Ответ вскрыт!')
     await reveal_answer(chat_id, context)
 
   elif data == 'score_yes':
     game['score'] += 1
+    await query.answer('Очко засчитано!')
     await query.edit_message_text(
         f'✅ **Засчитано!** Счёт: **{game["score"]}**'
     )
@@ -324,12 +389,14 @@ async def action_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await send_question(chat_id, context)
 
   elif data == 'score_no':
-    await query.edit_message_text(f'❌ **Не взяли.** Счёт: **{game["score"]}**')
+    await query.answer('Записано (0).')
+    await query.edit_message_text(f'❌ **Не взяли.** Счёт: **{game["score']}**')
     game['current_idx'] += 1
     await asyncio.sleep(1)
     await send_question(chat_id, context)
 
   elif data == 'action_next':
+    await query.answer('Следующий вопрос')
     game['current_idx'] += 1
     await send_question(chat_id, context)
 
@@ -358,5 +425,7 @@ if __name__ == '__main__':
       CallbackQueryHandler(action_callback, pattern='^(action_|score_|opt_)')
   )
 
-  print('🤖 Бот запущен с расширенной базой 50 вопросов!')
-  app.run_polling()
+  print(
+      '🤖 Бот запущен с базой из 100+ вопросов с картинками и защитой кнопок!'
+  )
+  app.run_polling() 
