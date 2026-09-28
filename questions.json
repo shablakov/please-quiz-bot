@@ -1276,5 +1276,405 @@
     "hint": "Великий испанский сюрреалист.",
     "explanation": "Сальвадор Дали.",
     "time_limit": 45
+  },
+  {
+    "id": 101,
+    "category": "🎬 Кино (Визуал)",
+    "type": "closed",
+    "question": "Назовите культовый фильм Дэвида Финчера 1999 года, первое правило которого — никому не рассказывать о нём.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d6/Fight_Club_poster.jpg",
+    "options": [
+      "A) Бойцовский клуб",
+      "B) Семь",
+      "C) Игра",
+      "D) Исчезнувшая"
+    ],
+    "answer": "A) Бойцовский клуб",
+    "accepts": [
+      "Fight Club"
+    ],
+    "hint": "Брэд Питт и мыло.",
+    "explanation": "Культовый фильм «Бойцовский клуб» по книге Чака Паланика.",
+    "time_limit": 45
+  },
+  {
+    "id": 102,
+    "category": "🎮 Игры (Визуал)",
+    "type": "open",
+    "question": "Назовите эпическую фэнтези-RPG от Bethesda, где можно криком сдуть врага со скалы.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/1/15/The_Elder_Scrolls_V_Skyrim_cover.png",
+    "answer": "The Elder Scrolls V: Skyrim",
+    "accepts": [
+      "Skyrim",
+      "Скайрим"
+    ],
+    "hint": "Довакин и стрела в колено.",
+    "explanation": "Легендарный Скайрим, где драконы возвращаются в мир.",
+    "time_limit": 45
+  },
+  {
+    "id": 103,
+    "category": "🎨 Искусство (Визуал)",
+    "type": "closed",
+    "question": "Кто автор этого шедевра Раннего Возрождения, изображающего богиню, рождающуюся из пены морской?",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/800px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg",
+    "options": [
+      "A) Леонардо да Винчи",
+      "B) Сандро Боттичелли",
+      "C) Микеланджело",
+      "D) Рафаэль"
+    ],
+    "answer": "B) Сандро Боттичелли",
+    "accepts": [
+      "Боттичелли"
+    ],
+    "hint": "Картина «Рождение Венеры».",
+    "explanation": "Жемчужина галереи Уффици во Флоренции.",
+    "time_limit": 45
+  },
+  {
+    "id": 104,
+    "category": "🌍 География (Визуал)",
+    "type": "open",
+    "question": "Как называется эта знаменитая статуя в Рио-де-Жанейро, установленная на вершине горы Корковаду?",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Christ_the_Redeemer_-_Cristo_Redentor.jpg/800px-Christ_the_Redeemer_-_Cristo_Redentor.jpg",
+    "answer": "Христос Искупитель",
+    "accepts": [
+      "Cristo Redentor",
+      "Статуя Христа"
+    ],
+    "hint": "Символ Бразилии.",
+    "explanation": "Одно из новых семи чудес света.",
+    "time_limit": 45
+  },
+  {
+    "id": 105,
+    "category": "🎬 Кино (Визуал)",
+    "type": "closed",
+    "question": "Назовите триллер Джонатана Демми, где на постере изображена бабочка «Мёртвая голова».",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b4/Silence_of_the_lambs.jpg",
+    "options": [
+      "A) Психо",
+      "B) Молчание ягнят",
+      "C) Семь",
+      "D) Зодиак"
+    ],
+    "answer": "B) Молчание ягнят",
+    "accepts": [
+      "The Silence of the Lambs"
+    ],
+    "hint": "Ганнибал Лектер и Кларисса Старлинг.",
+    "explanation": "Фильм, получивший «Оскар» в 5 главных номинациях.",
+    "time_limit": 45
+  },
+  {
+    "id": 106,
+    "category": "🎮 Игры (Визуал)",
+    "type": "open",
+    "question": "Назовите вестерн-шедевр от Rockstar Games про Артура Моргана и банду Датча ван дер Линде.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg",
+    "answer": "Red Dead Redemption 2",
+    "accepts": [
+      "RDR2",
+      "Ред Дед Редемпшн 2"
+    ],
+    "hint": "Игра про ковбоев на закате эпохи Дикого Запада.",
+    "explanation": "Один из самых детализированных открытых миров в истории игр.",
+    "time_limit": 45
+  },
+  {
+    "id": 107,
+    "category": "🎵 Музыкальный детектив",
+    "type": "closed",
+    "question": "Какая легендарная четверка изображена на этой обложке альбома 1969 года, переходя дорогу?",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/4/4a/Abbey_Road.jpg",
+    "options": [
+      "A) The Rolling Stones",
+      "B) The Beatles",
+      "C) Queen",
+      "D) Pink Floyd"
+    ],
+    "answer": "B) The Beatles",
+    "accepts": [
+      "Битлз",
+      "The Beatles"
+    ],
+    "hint": "Альбом называется в честь улицы, где находится студия.",
+    "explanation": "Легендарный переход на Эбби-Роуд.",
+    "time_limit": 45
+  },
+  {
+    "id": 108,
+    "category": "🎨 Искусство (Визуал)",
+    "type": "open",
+    "question": "Назовите автора этой знаменитой картины «Девятый вал», изображающей борьбу людей со стихией.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Aivazovsky_-_The_Ninth_Wave.jpg/800px-Aivazovsky_-_The_Ninth_Wave.jpg",
+    "answer": "Иван Айвазовский",
+    "accepts": [
+      "Айвазовский",
+      "Ованес Айвазян"
+    ],
+    "hint": "Великий русский маринист армянского происхождения.",
+    "explanation": "Самая известная картина главного художника-мариниста России.",
+    "time_limit": 45
+  },
+  {
+    "id": 109,
+    "category": "🎬 Кино (Визуал)",
+    "type": "closed",
+    "question": "В каком фильме Том Хэнкс сидит на скамейке с коробкой конфет и рассказывает прохожим свою историю?",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/6/6a/Forrest_Gump_poster.jpg",
+    "options": [
+      "A) Изгой",
+      "B) Форрест Гамп",
+      "C) Терминал",
+      "D) Зелёная миля"
+    ],
+    "answer": "B) Форрест Гамп",
+    "accepts": [
+      "Forrest Gump"
+    ],
+    "hint": "«Жизнь как коробка шоколадных конфет...»",
+    "explanation": "Культовая драма Роберта Земекиса 1994 года.",
+    "time_limit": 45
+  },
+  {
+    "id": 110,
+    "category": "🎮 Игры (Визуал)",
+    "type": "open",
+    "question": "В какой игре Valve главная героиня Челл использует портальную пушку, чтобы сбежать из лаборатории Aperture Science?",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f2/Portal2cover.jpg",
+    "answer": "Portal 2",
+    "accepts": [
+      "Portal",
+      "Портал"
+    ],
+    "hint": "The cake is a lie.",
+    "explanation": "Гениальная головоломка с черным юмором и ИИ ГЛаДОС.",
+    "time_limit": 45
+  },
+  {
+    "id": 111,
+    "category": "📜 История и Культура",
+    "type": "open",
+    "question": "Как называется это знаменитое фото Евгения Халдея, сделанное весной 1945 года?",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Raising_a_Flag_over_the_Reichstag.jpg/800px-Raising_a_Flag_over_the_Reichstag.jpg",
+    "answer": "Знамя Победы над Рейхстагом",
+    "accepts": [
+      "Водружение знамени",
+      "Знамя над Рейхстагом"
+    ],
+    "hint": "Символ окончания Великой Отечественной войны.",
+    "explanation": "На фото Алексей Ковалёв, Абдулхаким Исмаилов и Леонид Горычев.",
+    "time_limit": 60
+  },
+  {
+    "id": 112,
+    "category": "🎬 Кино (Визуал)",
+    "type": "closed",
+    "question": "Назовите фильм Фрэнка Дарабонта, где Энди Дюфрейн 19 лет копает тоннель в стене камеры.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/8/84/The_Shawshank_Redemption_%28movie_poster%29.jpg",
+    "options": [
+      "A) Зеленая миля",
+      "B) Побег из Шоушенка",
+      "C) Двенадцать лет рабства",
+      "D] Престиж"
+    ],
+    "answer": "B) Побег из Шоушенка",
+    "accepts": [
+      "The Shawshank Redemption"
+    ],
+    "hint": "Фильм, который уже много лет занимает 1 место в топ-250 IMDb.",
+    "explanation": "Шедевр с Тимом Роббинсом и Морганом Фриманом.",
+    "time_limit": 45
+  },
+  {
+    "id": 113,
+    "category": "🎮 Игры (Визуал)",
+    "type": "open",
+    "question": "Назовите культовый шутер от Valve, где молчаливый ученый Гордон Фриман сражается с Альянсом ломом.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/2/25/Half-Life_2_cover.jpg",
+    "answer": "Half-Life 2",
+    "accepts": [
+      "Халф-Лайф 2",
+      "HL2"
+    ],
+    "hint": "Гравитационная пушка и город Сити-17.",
+    "explanation": "Игра, которая революционизировала физику в шутерах.",
+    "time_limit": 45
+  },
+  {
+    "id": 114,
+    "category": "🎨 Искусство (Визуал)",
+    "type": "closed",
+    "question": "Как называется эта знаменитая картина Гранта Вуда, ставшая символом американской сельской жизни?",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg/800px-Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg",
+    "options": [
+      "A) Американская готика",
+      "B) Фермер и его дочь",
+      "C) Великая депрессия",
+      "D) Nighthawks"
+    ],
+    "answer": "A) Американская готика",
+    "accepts": [
+      "American Gothic"
+    ],
+    "hint": "Часто пародируется в поп-культуре с разными персонажами.",
+    "explanation": "На картине изображены сестра художника и их дантист.",
+    "time_limit": 45
+  },
+  {
+    "id": 115,
+    "category": "🌍 География (Визуал)",
+    "type": "open",
+    "question": "Как называется знаменитая часовая башня в Лондоне, которую часто ошибочно называют именем самого колокола?",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/London_November_2013-1a.jpg/800px-London_November_2013-1a.jpg",
+    "answer": "Биг-Бен (или Башня Елизаветы II)",
+    "accepts": [
+      "Big Ben",
+      "Elizabeth Tower"
+    ],
+    "hint": "На самом деле Биг-Бен — это только колокол внутри.",
+    "explanation": "С 2012 года башня официально называется Башней Елизаветы II.",
+    "time_limit": 45
+  },
+  {
+    "id": 116,
+    "category": "🎬 Кино (Визуал)",
+    "type": "closed",
+    "question": "Какой актер получил «Оскар» за роль в этом фильме Тодда Филлипса 2019 года?",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e1/Joker_%282019%29_poster.jpg",
+    "options": [
+      "A) Хит Леджер",
+      "B) Хоакин Феникс",
+      "C) Джаред Лето",
+      "D) Джек Николсон"
+    ],
+    "answer": "B) Хоакин Феникс",
+    "accepts": [
+      "Joaquin Phoenix"
+    ],
+    "hint": "История становления главного злодея Готэма.",
+    "explanation": "Фильм «Джокер», собравший миллиард в прокате.",
+    "time_limit": 45
+  },
+  {
+    "id": 117,
+    "category": "🎮 Игры (Визуал)",
+    "type": "open",
+    "question": "Назовите серию игр Sony Santa Monica, где спартанец Кратос путешествует по миру скандинавской мифологии с сыном.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg",
+    "answer": "God of War",
+    "accepts": [
+      "Бог Войны",
+      "GoW"
+    ],
+    "hint": "«Мальчик!»",
+    "explanation": "Перезапуск серии 2018 года, получивший «Игру года».",
+    "time_limit": 45
+  },
+  {
+    "id": 118,
+    "category": "🎵 Музыкальный детектив",
+    "type": "closed",
+    "question": "Какая гранж-группа выпустила этот альбом 1991 года с младенцем, плывущим за долларом?",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b7/Nirvana_-_Nevermind.png",
+    "options": [
+      "A) Pearl Jam",
+      "B) Nirvana",
+      "C) Soundgarden",
+      "D) Alice in Chains"
+    ],
+    "answer": "B) Nirvana",
+    "accepts": [
+      "Нирвана"
+    ],
+    "hint": "Альбом называется «Nevermind», главный хит — Smells Like Teen Spirit.",
+    "explanation": "Альбом, который сделал гранж мейнстримом.",
+    "time_limit": 45
+  },
+  {
+    "id": 119,
+    "category": "🎨 Искусство (Визуал)",
+    "type": "open",
+    "question": "Как называется этот фрагмент фрески Микеланджело в Сикстинской капелле?",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/800px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg",
+    "answer": "Сотворение Адама",
+    "accepts": [
+      "Creation of Adam"
+    ],
+    "hint": "Почти касающиеся пальцы Бога и человека.",
+    "explanation": "Один из самых узнаваемых образов в мировом искусстве.",
+    "time_limit": 45
+  },
+  {
+    "id": 120,
+    "category": "🎬 Кино (Визуал)",
+    "type": "closed",
+    "question": "В каком фильме Кристофера Нолана герои путешествуют внутри снов, используя «кик» (падение)?",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/7/7f/Inception_ver3.jpg",
+    "options": [
+      "A) Интерстеллар",
+      "B) Начало",
+      "C) Довод",
+      "D) Престиж"
+    ],
+    "answer": "B) Начало",
+    "accepts": [
+      "Inception",
+      "Инсепшн"
+    ],
+    "hint": "Волчок, который в конце фильма продолжает крутиться.",
+    "explanation": "Фантастический триллер с Леонардо Ди Каприо.",
+    "time_limit": 45
+  },
+  {
+    "id": 121,
+    "category": "🎵 Аудио-Блиц",
+    "type": "open",
+    "question": "🎧 Прослушайте аудио. Назовите культовую игру от Mojang, в которой этот звук раздается при поедании еды.",
+    "audio_url": "https://www.myinstants.com/media/sounds/minecraft-eating.mp3",
+    "answer": "Minecraft",
+    "accepts": [
+      "Майнкрафт"
+    ],
+    "hint": "Кубики, крафт и криперы.",
+    "explanation": "Характерный звук поедания (хрум-хрум) из Minecraft.",
+    "time_limit": 30
+  },
+  {
+    "id": 122,
+    "category": "🎵 Аудио-Блиц",
+    "type": "open",
+    "question": "🎧 Прослушайте знаменитый звук. Как называется вымышленное оружие из «Звездных войн», которое издает этот звук?",
+    "audio_url": "https://www.myinstants.com/media/sounds/lightsaber.mp3",
+    "answer": "Световой меч",
+    "accepts": [
+      "Lightsaber",
+      "Лазерный меч"
+    ],
+    "hint": "Джедаи и ситхи.",
+    "explanation": "Звук включения и работы светового меча.",
+    "time_limit": 30
+  },
+  {
+    "id": 123,
+    "category": "🎵 Аудио-Блиц",
+    "type": "closed",
+    "question": "🎧 Прослушайте интро. Какой сериал начинается с этой мелодии и вида на Нью-Мексико?",
+    "audio_url": "https://www.myinstants.com/media/sounds/breaking-bad-theme.mp3",
+    "options": [
+      "A) Лучше звоните Солу",
+      "B) Во все тяжкие",
+      "C) Фарго",
+      "D) Настоящий детектив"
+    ],
+    "answer": "B) Во все тяжкие",
+    "accepts": [
+      "Breaking Bad"
+    ],
+    "hint": "Уолтер Уайт и Гайзенберг.",
+    "explanation": "Легендарная тема из Breaking Bad.",
+    "time_limit": 30
   }
 ]
